@@ -23,13 +23,9 @@
                 <?php echo e(($item->gender == 'male') ? 'Perempuan' : 'Laki - Laki'); ?>
 
             </td>
-            <?php
-                $data = $item->visit_at;
-                $carbon = \Carbon\Carbon::parse($data);
-                $visit_at = $carbon->formatLocalized('%A %d %B %Y %H.%M');;
-            ?>
+
             <td>
-                <?php echo e($visit_at); ?>
+                <?php echo e($item->visit_at); ?>
 
             </td>
             
@@ -57,4 +53,4 @@
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>
 </table>
-<?php echo e($collection->links('theme.web.pagination')); ?><?php /**PATH C:\laragon\www\perpustakaanSDN\resources\views/pages/visitor/list.blade.php ENDPATH**/ ?>
+<?php echo e($collection->links('theme.web.pagination')); ?><?php /**PATH D:\KULIAH\DICODING\laragon\www\perpustakaanSDN\resources\views/pages/visitor/list.blade.php ENDPATH**/ ?>

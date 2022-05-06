@@ -19,23 +19,26 @@ Route::group(['domain' => ''], function() {
         Route::middleware(['auth:web'])->group(function(){
             Route::redirect('/', 'dashboard', 301);
             Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-            Route::resource('obat', VisitorController::class);
             Route::resource('member', MemberController::class);
             Route::resource('visitor', VisitorController::class);
             
             // BOOK
             Route::prefix('book')->name('book.')->group(function(){
                 Route::get('', [BookController::class, 'index'])->name('index');
-                Route::get('edit', [BookController::class, 'edit'])->name('edit');
-                Route::post('cpassword', [BookController::class, 'cpassword'])->name('cpassword');
-                Route::post('save', [BookController::class, 'save'])->name('save');
+                Route::get('create', [BookController::class, 'create'])->name('create');
+                Route::get('edit/{book}', [BookController::class, 'edit'])->name('edit');
+                Route::post('store', [BookController::class, 'store'])->name('store');
+                Route::get('show/{book}', [BookController::class, 'show'])->name('show');
+                Route::patch('update/{book}', [BookController::class, 'update'])->name('update');
+                Route::patch('accept/{book}', [BookController::class, 'accept'])->name('accept');
+                Route::patch('decline/{book}', [BookController::class, 'decline'])->name('decline');
+                Route::delete('destroy/{book}', [BookController::class, 'destroy'])->name('destroy');
             });
 
               // BORROW
               Route::prefix('borrow')->name('borrow.')->group(function(){
                 Route::get('', [BorrowController::class, 'index'])->name('index');
                 Route::get('edit', [BorrowController::class, 'edit'])->name('edit');
-                Route::post('cpassword', [BorrowController::class, 'cpassword'])->name('cpassword');
                 Route::post('save', [BorrowController::class, 'save'])->name('save');
             });
 

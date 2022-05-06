@@ -2,35 +2,45 @@
     <thead>
         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
             <th class="min-w-125px">No</th>
-            <th class="min-w-125px">Nama Pengunjung</th>
-            <th class="min-w-125px">Jenis Kelamin</th>
-            <th class="min-w-125px">Waktu Masuk</th>
+            <th class="min-w-125px">Nama Buku</th>
+            <th class="min-w-125px">Jenis Buku</th>
+            <th class="min-w-125px">Tahun Terbit</th>
+            <th class="min-w-125px">Penerbit</th>
+            <th class="min-w-125px">Status</th>
             <th class="text-end min-w-70px">Aksi</th>
         </tr>
     </thead>
     <tbody class="fw-bold text-gray-600">
-        <?php $__currentLoopData = $collection; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        @foreach ($collection as $item)
         <tr>
             <td>
-                <?php echo e($loop->iteration); ?> 
+                {{ $loop->iteration }} 
             </td>
-            <td>
-                <?php echo e($item->user->name); ?>
 
+            <td>
+                {{ $item->name }}
             </td>
 
             <td class="w-35px me-3">
-                <?php echo e(($item->gender == 'male') ? 'Perempuan' : 'Laki - Laki'); ?>
-
+                {{ $item->type }}
             </td>
-            <?php
-                $data = $item->visit_at;
-                $carbon = \Carbon\Carbon::parse($data);
-                $visit_at = $carbon->formatLocalized('%A %d %B %Y %H.%M');;
-            ?>
-            <td>
-                <?php echo e($visit_at); ?>
 
+            <td>
+                {{ $item->year_release  }}
+            </td>
+
+            <td>
+                {{ $item->publisher  }}
+            </td>
+
+            <td>
+                @if($item->status == 'pending')
+                    {{ 'Menunggu Konfirmasi Kepala Sekolah' }}
+                @elseif($item->status == 'decline')
+                    {{ 'Ditolak oleh Kepala Sekolah' }}
+                @elseif($item->status == 'accept')
+                    {{ 'Diterima oleh Kepala Sekolah' }}
+                @endif
             </td>
             
             <td class="text-end">
@@ -45,16 +55,21 @@
                     </button>
                     <div class="dropdown-menu menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" aria-labelledby="aksi">
                         <div class="menu-item px-3">
-                            <a href="javascript:;" onclick="load_input('<?php echo e(route('web.visitor.edit',$item->id)); ?>');" class="menu-link px-3">Ubah</a>
+                            <a href="javascript:;" onclick="load_input('{{route('web.book.show',$item->id)}}');" class="menu-link px-3">Lihat</a>
                         </div>
                         <div class="menu-item px-3">
-                            <a href="javascript:;" onclick="handle_confirm('Apakah Anda Yakin?','Yakin','Tidak','DELETE','<?php echo e(route('web.visitor.destroy',$item->id)); ?>');" class="menu-link px-3">Hapus</a>
+                            <a href="javascript:;" onclick="load_input('{{route('web.book.edit',$item->id)}}');" class="menu-link px-3">Ubah</a>
                         </div>
+                        @if(Auth::user()->role == 'admin')
+                        <div class="menu-item px-3">
+                            <a href="javascript:;" onclick="handle_confirm('Apakah Anda Yakin?','Yakin','Tidak','DELETE','{{route('web.book.destroy',$item->id)}}');" class="menu-link px-3">Hapus</a>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </td>
         </tr>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        @endforeach
     </tbody>
 </table>
-<?php echo e($collection->links('theme.web.pagination')); ?><?php /**PATH C:\laragon\www\perpustakaanSDN\resources\views/pages/visitor/list.blade.php ENDPATH**/ ?>
+{{$collection->links('theme.web.pagination')}}

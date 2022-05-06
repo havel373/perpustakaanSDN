@@ -1,9 +1,4 @@
-<?php if (isset($component)) { $__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\WebLayout::class, ['title' => 'Data Pengunjung']); ?>
-<?php $component->withName('web-layout'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes([]); ?>
+<x-web-layout title="Data Peminjaman">
     <div id="content_list">
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
@@ -21,11 +16,13 @@
                                     <input type="text" name="keywords" onkeyup="load_list(1);" class="form-control form-control-solid w-250px ps-15" placeholder="Cari data..." />
                                 </div>
                             </div>
-                            <div class="card-toolbar">
-                                <div class="d-flex justify-content-end">
-                                    <button type="button" onclick="load_input('<?php echo e(route('web.visitor.create')); ?>');" class="btn btn-sm btn-primary">Tambah Data</button>
+                            @if(Auth::user()->role == 'admin')
+                                <div class="card-toolbar">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" onclick="load_input('{{route('web.book.create')}}');" class="btn btn-sm btn-primary">Tambah Data</button>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </form>
                     <div class="card-body pt-0">
@@ -38,14 +35,9 @@
         </div>
     </div>
     <div id="content_input"></div>
-    <?php $__env->startSection('custom_js'); ?>
+    @section('custom_js')
         <script>
             load_list(1);
         </script>
-    <?php $__env->stopSection(); ?>
- <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48)): ?>
-<?php $component = $__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48; ?>
-<?php unset($__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48); ?>
-<?php endif; ?><?php /**PATH C:\laragon\www\perpustakaanSDN\resources\views/pages/visitor/main.blade.php ENDPATH**/ ?>
+    @endsection
+</x-web-layout>

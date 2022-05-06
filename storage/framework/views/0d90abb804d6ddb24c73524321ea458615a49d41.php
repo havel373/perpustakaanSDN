@@ -1,5 +1,5 @@
 <?php if (isset($component)) { $__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\WebLayout::class, ['title' => 'Data Pengunjung']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\WebLayout::class, ['title' => 'Data Peminjaman']); ?>
 <?php $component->withName('web-layout'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -21,11 +21,13 @@
                                     <input type="text" name="keywords" onkeyup="load_list(1);" class="form-control form-control-solid w-250px ps-15" placeholder="Cari data..." />
                                 </div>
                             </div>
-                            <div class="card-toolbar">
-                                <div class="d-flex justify-content-end">
-                                    <button type="button" onclick="load_input('<?php echo e(route('web.visitor.create')); ?>');" class="btn btn-sm btn-primary">Tambah Data</button>
+                            <?php if(Auth::user()->role == 'admin'): ?>
+                                <div class="card-toolbar">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" onclick="load_input('<?php echo e(route('web.book.create')); ?>');" class="btn btn-sm btn-primary">Tambah Data</button>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
                         </div>
                     </form>
                     <div class="card-body pt-0">
@@ -48,4 +50,4 @@
 <?php if (isset($__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48)): ?>
 <?php $component = $__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48; ?>
 <?php unset($__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48); ?>
-<?php endif; ?><?php /**PATH C:\laragon\www\perpustakaanSDN\resources\views/pages/visitor/main.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH C:\laragon\www\perpustakaanSDN\resources\views/pages/book/main.blade.php ENDPATH**/ ?>

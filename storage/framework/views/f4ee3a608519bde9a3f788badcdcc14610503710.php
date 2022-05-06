@@ -1,5 +1,5 @@
 <?php if (isset($component)) { $__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\WebLayout::class, ['title' => 'Data Pengunjung']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\WebLayout::class, ['title' => 'Data Anggota']); ?>
 <?php $component->withName('web-layout'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -23,7 +23,7 @@
                             </div>
                             <div class="card-toolbar">
                                 <div class="d-flex justify-content-end">
-                                    <button type="button" onclick="load_input('<?php echo e(route('web.visitor.create')); ?>');" class="btn btn-sm btn-primary">Tambah Data</button>
+                                    <button type="button" onclick="load_input('<?php echo e(route('web.member.create')); ?>');" class="btn btn-sm btn-primary">Tambah Data</button>
                                 </div>
                             </div>
                         </div>
@@ -48,4 +48,4 @@
 <?php if (isset($__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48)): ?>
 <?php $component = $__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48; ?>
 <?php unset($__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48); ?>
-<?php endif; ?><?php /**PATH C:\laragon\www\perpustakaanSDN\resources\views/pages/visitor/main.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH D:\KULIAH\DICODING\laragon\www\perpustakaanSDN\resources\views/pages/member/main.blade.php ENDPATH**/ ?>

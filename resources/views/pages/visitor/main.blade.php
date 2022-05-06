@@ -18,7 +18,7 @@
                             </div>
                             <div class="card-toolbar">
                                 <div class="d-flex justify-content-end">
-                                    <button type="button" onclick="load_input('{{route('web.member.create')}}');" class="btn btn-sm btn-primary">Tambah Data</button>
+                                    <button type="button" onclick="load_input('{{route('web.visitor.create')}}');" class="btn btn-sm btn-primary">Tambah Data</button>
                                 </div>
                             </div>
                         </div>

@@ -2,13 +2,13 @@
     <div class="aside-toolbar flex-column-auto" id="kt_aside_toolbar">
         <div class="aside-user d-flex align-items-sm-center justify-content-center py-5">
             <div class="symbol symbol-50px">
-                <img src="{{asset('img/avatars/admin.png')}}" alt="" />
+                <img src="<?php echo e(asset('img/avatars/admin.png')); ?>" alt="" />
             </div>
             <div class="aside-user-info flex-row-fluid flex-wrap ms-5">
                 <div class="d-flex">
                     <div class="flex-grow-1 me-2">
-                        <a href="#" class="text-white text-hover-primary fs-6 fw-bold">{{Auth::user()->name}}</a>
-                        <span class="text-gray-600 fw-bold d-block fs-8 mb-1">{{Str::title(Auth::user()->role)}}</span>
+                        <a href="#" class="text-white text-hover-primary fs-6 fw-bold"><?php echo e(Auth::user()->name); ?></a>
+                        <span class="text-gray-600 fw-bold d-block fs-8 mb-1"><?php echo e(Str::title(Auth::user()->role)); ?></span>
                         <div class="d-flex align-items-center text-success fs-9">
                         <span class="bullet bullet-dot bg-success me-1"></span>online</div>
                     </div>
@@ -25,21 +25,22 @@
                             <div class="menu-item px-3">
                                 <div class="menu-content d-flex align-items-center px-3">
                                     <div class="symbol symbol-50px me-5">
-                                        <img alt="Logo" src="{{asset('img/avatars/admin.png')}}" />
+                                        <img alt="Logo" src="<?php echo e(asset('img/avatars/admin.png')); ?>" />
                                     </div>
                                     <div class="d-flex flex-column">
-                                        <div class="fw-bolder d-flex align-items-center fs-5">{{Auth::user()->name}}
-                                        <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">{{Str::title(Auth::user()->role)}}</span></div>
-                                        <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{Auth::user()->email}}</a>
+                                        <div class="fw-bolder d-flex align-items-center fs-5"><?php echo e(Auth::user()->name); ?>
+
+                                        <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2"><?php echo e(Str::title(Auth::user()->role)); ?></span></div>
+                                        <a href="#" class="fw-bold text-muted text-hover-primary fs-7"><?php echo e(Auth::user()->email); ?></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="separator my-2"></div>
                             <div class="menu-item px-5">
-                                <a href="{{route('web.profile.index')}}" class="menu-link px-5">Profil Saya</a>
+                                <a href="<?php echo e(route('web.profile.index')); ?>" class="menu-link px-5">Profil Saya</a>
                             </div>
                             <div class="menu-item px-5">
-                                <a href="{{route('web.auth.logout')}}" class="menu-link px-5">Keluar</a>
+                                <a href="<?php echo e(route('web.auth.logout')); ?>" class="menu-link px-5">Keluar</a>
                             </div>
                         </div>
                     </div>
@@ -56,7 +57,7 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link {{request()->is('dashboard') ? 'active' : ''}}" href="{{route('web.dashboard')}}">
+                    <a class="menu-link <?php echo e(request()->is('dashboard') ? 'active' : ''); ?>" href="<?php echo e(route('web.dashboard')); ?>">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -75,8 +76,8 @@
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Menu Utama</span>
                     </div>
                 </div>
-                <div class="menu-item {{Auth::user()->role != 'admin' ? 'd-none' : ''}}">
-                    <a class="menu-link {{request()->is('member') ? 'active' : ''}}" href=" {{ route('web.member.index') }} ">
+                <div class="menu-item">
+                    <a class="menu-link <?php echo e(request()->is('member') ? 'active' : ''); ?>" href=" <?php echo e(route('web.member.index')); ?> ">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotone/Design/Difference.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -91,7 +92,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link {{request()->is('book') ? 'active' : ''}}" href="{{ route('web.book.index') }} ">
+                    <a class="menu-link <?php echo e(request()->is('book') ? 'active' : ''); ?>" href="<?php echo e(route('web.book.index')); ?> ">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotone/Design/Difference.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -105,8 +106,8 @@
                         <span class="menu-title">Daftar Buku</span>
                     </a>
                 </div>
-                <div class="menu-item {{Auth::user()->role != 'admin' ? 'd-none' : ''}}">
-                    <a class="menu-link {{request()->is('visitor') ? 'active' : ''}}" href="{{ route('web.visitor.index') }} ">
+                <div class="menu-item">
+                    <a class="menu-link <?php echo e(request()->is('visitor') ? 'active' : ''); ?>" href="<?php echo e(route('web.visitor.index')); ?> ">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotone/Design/Difference.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -121,7 +122,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link {{request()->is('borrow') ? 'active' : ''}}" href="{{ route('web.borrow.index') }}">
+                    <a class="menu-link <?php echo e(request()->is('borrow') ? 'active' : ''); ?>" href="<?php echo e(route('web.borrow.index')); ?>">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotone/Design/Difference.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -138,4 +139,4 @@
             </div>
         </div>
     </div>
-</div>
+</div><?php /**PATH D:\KULIAH\DICODING\laragon\www\perpustakaanSDN\resources\views/theme/web/aside.blade.php ENDPATH**/ ?>

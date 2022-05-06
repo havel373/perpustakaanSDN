@@ -1,5 +1,5 @@
 <?php if (isset($component)) { $__componentOriginal4f561617d80b81635ce1c372fc1de3f039937f48 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\WebLayout::class, ['title' => 'Data Obat']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\WebLayout::class, ['title' => 'Data Peminjaman']); ?>
 <?php $component->withName('web-layout'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>

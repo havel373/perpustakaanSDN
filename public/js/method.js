@@ -44,12 +44,7 @@ function load_input(url){
         main_content('content_input');
     }, "html");
 }
-function load_detail(url){
-    $.get(url, {}, function(result) {
-        $('#content_detail').html(result);
-        main_content('content_detail');
-    }, "html"); 
-}
+
 function handle_confirm(title, confirm_title, deny_title, method, route){
     Swal.fire({
         title: title,
@@ -77,16 +72,7 @@ function handle_confirm(title, confirm_title, deny_title, method, route){
         }
     });
 }
-function handle_check(route){
-    $.ajax({
-        type: "PATCH",
-        url: route,
-        dataType: 'json',
-        success: function(response) {      
-            load_list(1);
-        }
-    });
-}
+
 function handle_get(url){
     $.get(url, {}, function(result) {
         info_toastr(response.message);
@@ -97,40 +83,23 @@ function handle_post(url){
         info_toastr(response.message);
     }, "json");
 }
-
-function handle_save_password(tombol, form, url, method){
-    $(tombol).submit(function () {
-        return false;
-    });
-    let data = $(form).serialize();
-    $(tombol).prop("disabled", true);
-    $(tombol).html("Please wait");
+function handle_patch(param){
     $.ajax({
-        type: method,
-        url: url,
-        data: data,
+        type: 'PATCH',
+        url: param,
         dataType: 'json',
         beforeSend: function() {
-            
+
         },
-        success: function (response) {
-            if (response.alert=="success") {
-                Swal.fire({ text: response.message, icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, Mengerti!", customClass: { confirmButton: "btn btn-primary" } });
-                $(form)[0].reset();
-                setTimeout(function () {
-                    $(tombol).prop("disabled", false);
-                        main_content('content_list');
-                        load_list(1);
-                }, 2000);
-            } else {
-                Swal.fire({ text: response.message, icon: "error", buttonsStyling: !1, confirmButtonText: "Ok, Mengerti!", customClass: { confirmButton: "btn btn-primary" } });
-                setTimeout(function () {
-                    $(tombol).prop("disabled", false);
-                }, 2000);
-            }
-        },
+        success: function(response) {
+            success_toastr(response.message);
+            main_content('content_list');
+            load_list(1);
+        }
     });
 }
+
+
 
 function handle_save(tombol, form, url, method){
     $(tombol).submit(function() {
@@ -219,5 +188,15 @@ function handle_upload(tombol, form, url, method){
             },
         });
         return false;
+    });
+}
+function number_only(obj) {
+    $('#' + obj).bind('keypress', function (event) {
+        var regex = new RegExp("^[0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
     });
 }

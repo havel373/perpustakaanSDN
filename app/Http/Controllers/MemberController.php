@@ -4,11 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class MemberController extends Controller
 {
+    public function __construct(){
+        $this->middleware(function ($request,$next) {
+            $role = Auth::user()->role;
+            if($role != 'admin'){
+                abort(403);
+            }
+            return $next($request);
+        });
+    }
+    
     public function index(Request $request)
     {
         if($request->ajax() ){
